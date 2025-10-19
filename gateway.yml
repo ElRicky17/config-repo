@@ -1,0 +1,50 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      routes:
+        - id: servicemedianos
+          uri: http://localhost:9001
+          predicates:
+            - Path=/api/medianos/**
+        - id: servicephotos
+          uri: http://localhost:9000
+          predicates:
+            - Path=/api/fotos/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            # Si usas credenciales:
+            # allowed-origins: "http://localhost:3000"
+            # allow-credentials: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9003/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0
