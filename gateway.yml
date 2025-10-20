@@ -6,7 +6,7 @@ spring:
     name: gateway
   cloud:
     config:
-      enabled: false
+      enabled: true
     gateway:
       routes:
         - id: servicemedianos
@@ -23,14 +23,11 @@ spring:
             allowed-origins: "*"
             allowed-methods: "*"
             allowed-headers: "*"
-            # Si usas credenciales:
-            # allowed-origins: "http://localhost:3000"
-            # allow-credentials: true
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9003/eureka/
+      defaultZone: http://localhost:9003/eureka
     register-with-eureka: true
     fetch-registry: true
 
