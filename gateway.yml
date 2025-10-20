@@ -5,24 +5,24 @@ spring:
   application:
     name: gateway
   cloud:
-    config:
-      enabled: true
     gateway:
-      routes:
-        - id: servicemedianos
-          uri: http://localhost:9001
-          predicates:
-            - Path=/api/medianos/**
-        - id: servicephotos
-          uri: http://localhost:9000
-          predicates:
-            - Path=/api/fotos/**
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowed-origins: "*"
-            allowed-methods: "*"
-            allowed-headers: "*"
+      server:
+        webflux:
+          routes:
+            - id: servicemedianos
+              uri: http://localhost:9001
+              predicates:
+                - Path=/api/medianos/**
+            - id: servicephotos
+              uri: http://localhost:9000
+              predicates:
+                - Path=/api/fotos/**
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowed-origins: "*"
+                allowed-methods: "*"
+                allowed-headers: "*"
 
 eureka:
   client:
