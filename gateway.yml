@@ -17,6 +17,10 @@ spring:
               uri: http://localhost:9000
               predicates:
                 - Path=/api/fotos/**
+            - id: serviceuser
+              uri: http://localhost:8083
+              predicates:
+                - Path=/auth/**
           globalcors:
             cors-configurations:
               '[/**]':
